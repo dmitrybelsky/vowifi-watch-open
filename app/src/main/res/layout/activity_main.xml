@@ -1,0 +1,385 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="vowifi-watch — мониторинг VoWiFi"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="8dp" />
+
+        <TextView
+            android:id="@+id/text_status"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="monospace"
+            android:textSize="14sp"
+            android:layout_marginBottom="12dp" />
+
+        <!-- Баннер: текущая сеть не в доверенных — добавление в один тап, только из приложения -->
+        <LinearLayout
+            android:id="@+id/suggest_row"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="#FFF3CD"
+            android:padding="12dp"
+            android:layout_marginBottom="12dp"
+            android:visibility="gone">
+
+            <TextView
+                android:id="@+id/suggest_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="14sp"
+                android:layout_marginBottom="8dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/button_suggest_add"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Добавить в доверенные" />
+
+                <Button
+                    android:id="@+id/button_suggest_decline"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Не предлагать" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Статистика"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="4dp" />
+
+        <TextView
+            android:id="@+id/text_stats"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="monospace"
+            android:textSize="13sp"
+            android:layout_marginBottom="12dp" />
+
+        <Button
+            android:id="@+id/button_toggle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Запустить мониторинг" />
+
+        <Button
+            android:id="@+id/button_permissions"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Запросить разрешения" />
+
+        <Button
+            android:id="@+id/button_battery"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Исключить из оптимизации батареи" />
+
+        <Button
+            android:id="@+id/button_xiaomi"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Автозапуск и фоновый режим (Xiaomi)" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Настройки"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="4dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Доверенные SSID (через «;»; пусто = любая сеть)" />
+        <EditText
+            android:id="@+id/edit_trusted_ssids"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            android:hint="MyHomeWifi, OfficeWiFi" />
+
+        <Button
+            android:id="@+id/button_clear_declined"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:minHeight="36dp"
+            android:textSize="12sp"
+            android:text="Очистить список «не предлагать»" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Порог RSSI, dBm (по умолчанию -67)" />
+        <EditText
+            android:id="@+id/edit_rssi_threshold"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="numberSigned" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Гистерезис порога RSSI, дБ (по умолчанию 3)" />
+        <EditText
+            android:id="@+id/edit_rssi_hysteresis"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="number" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Интервал проверки, сек (по умолчанию 60)" />
+        <EditText
+            android:id="@+id/edit_interval"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="number" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Подтверждающих проверок до remediation (по умолчанию 3)" />
+        <EditText
+            android:id="@+id/edit_confirm_checks"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="number" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Cooldown между попытками, мин (по умолчанию 15)" />
+        <EditText
+            android:id="@+id/edit_cooldown"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="number" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Максимум попыток подряд (по умолчанию 3)" />
+        <EditText
+            android:id="@+id/edit_max_attempts"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="number" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Лимит попыток в сутки (по умолчанию 2)" />
+        <EditText
+            android:id="@+id/edit_max_attempts_day"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="number" />
+
+        <Switch
+            android:id="@+id/switch_guard_interactive"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Не восстанавливать при включённом экране" />
+
+        <Switch
+            android:id="@+id/switch_keepalive"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Wi-Fi keepalive (лёгкий трафик раз в минуту)" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Watchdog «долго нет VoWiFi», часов (по умолчанию 6)" />
+        <EditText
+            android:id="@+id/edit_watchdog_hours"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="number" />
+
+        <Switch
+            android:id="@+id/switch_step_a"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Шаг A: перезапуск Wi-Fi (root / локальный ADB / API&lt;29)" />
+        <Switch
+            android:id="@+id/switch_step_b"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Шаг B: цикл авиарежима (root / локальный ADB; экспериментально — WRITE_SECURE_SETTINGS)" />
+        <Switch
+            android:id="@+id/switch_step_c"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Шаг C: кастомная команда (root / локальный ADB)" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Команда шага C (выполняется через root или локальный ADB; пусто = шаг отключён)" />
+        <EditText
+            android:id="@+id/edit_custom_command"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            android:fontFamily="monospace" />
+
+        <Button
+            android:id="@+id/button_save"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Сохранить настройки"
+            android:layout_marginTop="8dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Локальный ADB"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="4dp" />
+
+        <Switch
+            android:id="@+id/switch_use_local_adb"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Локальный ADB (без root)" />
+
+        <Switch
+            android:id="@+id/switch_auto_revive_adb"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Автовозврат беспроводной отладки (может вызывать системные диалоги)" />
+
+        <TextView
+            android:id="@+id/text_adb_status"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="monospace"
+            android:textSize="13sp"
+            android:layout_marginTop="4dp" />
+
+        <Button
+            android:id="@+id/button_adb_check"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Проверить подключение"
+            android:layout_marginTop="4dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Сопряжение: Настройки → Для разработчиков → Беспроводная отладка → Сопряжение устройства с кодом"
+            android:textSize="13sp"
+            android:layout_marginTop="8dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Хост (обычно 127.0.0.1)" />
+        <EditText
+            android:id="@+id/edit_adb_host"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            android:fontFamily="monospace"
+            android:text="127.0.0.1" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Порт сопряжения (из диалога сопряжения)" />
+        <EditText
+            android:id="@+id/edit_adb_pair_port"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="number" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="6-значный код сопряжения" />
+        <EditText
+            android:id="@+id/edit_adb_pair_code"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:maxLength="6" />
+
+        <Button
+            android:id="@+id/button_adb_pair"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Сопрячь"
+            android:layout_marginTop="4dp" />
+
+        <Button
+            android:id="@+id/button_adb_dev_settings"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Открыть настройки разработчика"
+            android:layout_marginTop="4dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Журнал событий"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="4dp" />
+
+        <ScrollView
+            android:id="@+id/scroll_log"
+            android:layout_width="match_parent"
+            android:layout_height="280dp"
+            android:background="#11000000"
+            android:padding="8dp">
+
+            <TextView
+                android:id="@+id/text_log"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="monospace"
+                android:textSize="12sp"
+                android:textIsSelectable="true" />
+        </ScrollView>
+
+        <Button
+            android:id="@+id/button_clear_log"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Очистить журнал"
+            android:layout_marginTop="8dp" />
+
+    </LinearLayout>
+</ScrollView>
